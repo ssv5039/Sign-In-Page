@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <meta name="viewport content=width=device-width,user-scalable=yes">
+
+    <title>Harris Secure Login</title> <!--Tab Title-->
+    <link rel="icon"
+      type="image/png"
+      href="https://www.harris.com/sites/all/themes/custom/harris/img/favicons/favicon-194x194.png">
+
+    <style type=text/css>
+      body{font-family:Tahoma, Geneva, sans-serif;font-size:17px;padding:1em 1em 1em 1em;background-color: #9EA29F;}
+      /*body{font-family:'pt serif', serif;font-size:17px;padding:1em 1em 1em 1em;background-image: url("bg.png");}*/
+      p{font-size:100%;line-height:1.5em;word-spacing:.1em}
+      h1{text-align:left;font-size:122%;font-weight:700;letter-spacing:0.13em;margin: .5em 0 .4em 0;line-height:1.2em}  /* Left Alig. Heading */
+      h2{font-size:122%;margin:0em 0;letter-spacing:0.1em;font-family:"Lobster"}
+      h3{font-size:130%;font-weight:600;word-spacing:.2em; border-top: 0 ; padding-top:-.05em;}
+      h4{font-size:122%;font-style:italic;margin:0em 0;letter-spacing:0.1em;font-family:"Lobster"} /*same as h2 but with italic */
+      a:link{color:#0000FF;text-decoration:none}
+      a:visited {color:#900;text-decoration:none}
+
+      *{
+        margin:0px;
+        padding:0px;
+      }
+      #container
+      {
+        width:550px;
+        background-color:rgba(250,250,252,.9);
+        margin:auto;
+        margin-top:10px;
+        margin-bottom:10px;
+        box-shadow:0 0 3px #999;
+      }
+      #container_body
+      {
+        padding:20px;
+      }
+      .form_title
+      {
+        font-size:35px;
+        color:#141823;
+        text-align:center;
+        padding:10px;
+        font-weight:normal;
+      }
+      .head_title
+      {
+        font-size:19px;
+        color:#99a2a7;
+        text-align:center;
+        font-weight:normal;
+      }
+      #form_name
+      {        /* First px moves email/pass bar up */
+        padding:7px 0 0 15px;
+      }
+      #email_form
+      {
+        clear:both;
+        padding:15px 0 10px 0px;
+      }
+      .input_email
+      {
+        width:482px;
+        padding:5px;
+        font-size:18px;
+      }
+      #password_form
+      {
+        padding:10px 0 10px 0px;
+      }
+      .input_password
+      {
+        width:482px;
+        padding:5px;
+        font-size:18px;
+      }
+      select
+      {
+        padding:5px;
+      }
+      #sign_user
+      {
+        font-size:14px;
+        color:#FFF;
+        text-align:center;
+        background-color:#3B5998;
+        padding:10px;
+        margin-top:10px;
+        cursor: pointer;
+      }
+      #errorBox
+      {
+        color:#F00;
+      }
+      #correctBox
+      {
+        color:#1BC026;
+        font-size:18px;
+      }
+    </style>
+  </head>
+
+  <!-- ^.^ Body Starts Here -->
+  <body>
+    <div id="emptyDiv"></div>
+    <div id="description"></div>
+    <!--container start-->
+    <div id="container">
+      <div id="container_body">
+        <div>
+          <h2 class="form_title">Public Safety Social Media Login - Harris Corp.</h2>
+          <p class="head_title">Don't have an Account? 
+            <a href="C:\Users\Shawn\Desktop\CMPSC 483W Website\Harris_SignUp.html">Sign Up for Free Here</p></a>
+        </div>
+
+        <!-- Now Form starts -->
+        <div id="form_name">
+          <div class="firstnameorlastname">
+            <form name="form">
+              <div id="errorBox"></div> <!-- Error Message -->
+              <center><div id="correctBox"></div></center>  <!-- Account Created Succesfully!!!! -->
+              <div id="email_form">
+                <input type="text" name="Email" value="" placeholder="Your Email" class="input_email">
+              </div>
+              <div id="password_form">
+                <input type="password" name="Password" value="" placeholder="Password" class="input_password">
+              </div>
+
+              <div>
+                <!-- <a href="file:///C:/Users/Shawn/Desktop/CMPSC%20483W/Harris_Index.html"><p id="sign_user" onClick="Submit()"> Sign Up</p></a> -->
+                <p id="sign_user" onClick="myLogin()"> Log In</p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- form ends -->
+      </div>
+    </div>
+    <!-- container ends -->
+
+    <!-- Angular JavaScript Used -->
+    <script>
+      function myLogin()
+      {
+        var emailRegex = /^[A-Za-z0-9._]*\@[A-Za-z]*\.[A-Za-z]{2,5}$/;
+        var femail = document.form.Email.value, fpassword = document.form.Password.value;
+
+        if (femail == "")
+        {
+          document.form.Email.focus();
+          document.getElementById('errorBox').innerHTML = "Please enter your Email"
+          return false;
+        }
+        if(!emailRegex.test(femail))
+        {
+          document.form.Email.focus();
+          document.getElementById("errorBox").innerHTML = "Please enter a valid Email (ex: 'pennstate12@gmail.com')";
+          return false;
+        }
+        if(fpassword == "")
+        {
+          document.form.Password.focus();
+          document.getElementById("errorBox").innerHTML = "Enter your password";
+          return false;
+        }
+        if(femail != '' && fpassword != '')
+        {
+          document.getElementById("errorBox").innerHTML = ""; // Leave it blank if other fields are correct
+          document.getElementById("correctBox").innerHTML = "Login Successful!!!";
+          setTimeout("location.href = 'file:///C:/Users/Shawn/Desktop/CMPSC%20483W%20Website/Harris_Index.html';", 1100); // Short Delay
+          return true;
+        }
+      }
+    </script>
+  </body>
+</html>
